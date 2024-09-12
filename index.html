@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Boiler-Plate -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #0e2338;
+      }
+      header {
+        text-align: center;
+        margin: 40dvh auto;
+        font-size: 5rem;
+        color: rgba(210, 221, 236, 0.7);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- React -->
+    <!-- Core React Features -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- Rendering layer which render react components into the dom -->
+    <!-- Also React can be rendered in other enviroments, like native apps -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Components -->
+    <!-- Since We don't have the tooling to convert JSX back JavaScript -->
+    <!-- Components are basically functiond that return what we want to see on the browser -->
+    <script>
+      function App() {
+        // const time = new Date().toLocaleTimeString();
+        const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+        React.useEffect(() => {
+          setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
+        }, []);
+
+        // This method takes (tagName, Props, ChildEl)
+        return React.createElement(
+          "header",
+          null,
+          `Hello React!!, It's ${time}`
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(React.createElement(App));
+    </script>
+  </body>
+</html>
